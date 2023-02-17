@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上海基金公司数据</title>
+</head>
+<body>
+          <style>
+            .mytable {
+                font-size: 14px;
+                border: 1px solid #CCC;
+                font-family: Arial, Helvetica, sans-serif;
+                width: 100%;
+                border-collapse: unset;
+            }
+
+            .mytable td {
+                padding: 4px;
+                margin: 3px;
+                border: 1px solid #CCC;
+            }
+
+            .mytable th {
+                background-color: #104E8B;
+                color: #FFF;
+                font-weight: bold;
+            }
+        </style>
+        <table id="main-table" class="mytable">
+            <tbody>
+                <tr>
+                    <th>公司名称</th>
+                    <th>公司位置</th>
+                    <th>公司规模</th>
+                    <th>基金数量</th>
+                    <th>官网链接</th>
+                </tr>
+                <tr>
+                    <td>申万菱信 </td>
+                    <td>上海市中山南路100号上海金外滩国际广场11层 </td>
+                    <td>747.26 </td>
+                    <td>136 </td>
+                    <td>www.swsmu.com</td>
+                </tr>
+                <tr>
+                    <td>天治 </td>
+                    <td>上海市复兴西路159号 </td>
+                    <td>55.38 </td>
+                    <td>19 </td>
+                    <td>www.chinanature.com.cn</td>
+                </tr>
+                <tr>
+                    <td>西藏东财 </td>
+                    <td>上海市徐汇区宛平南路88号金座5楼 </td>
+                    <td>47.09 </td>
+                    <td>60 </td>
+                    <td>www.dongcaijijin.com</td>
+                </tr>
+                <tr>
+                    <td>华鑫证券 </td>
+                    <td>上海市徐汇区宛平南路8号 </td>
+                    <td>1.55 </td>
+                    <td>2 </td>
+                    <td>www.cfsc.com.cn</td>
+                </tr>
+                <tr>
+                    <td>申万宏源 </td>
+                    <td>上海市徐汇区长乐路989号45层 </td>
+                    <td>168.38 </td>
+                    <td>10 </td>
+                    <td>www.swhysc.com/swhysc/</td>
+                </tr>
+                <tr>
+                    <td>嘉合 </td>
+                    <td>上海市杨浦区秦皇岛路32号A楼 </td>
+                    <td>301.09 </td>
+                    <td>45 </td>
+                    <td>www.haoamc.com</td>
+                </tr>
+                <tr>
+                    <td>长江证券(上海) </td>
+                    <td>上海市浦东新区世纪大道1198号世纪汇一座27层 </td>
+                    <td>158.88 </td>
+                    <td>53 </td>
+                    <td>www.cjzcgl.com</td>
+                </tr>
+                <tr>
+                    <td>中国人保 </td>
+                    <td>上海市浦东新区世纪大道1198号世纪汇广场1座21层 </td>
+                    <td>93.55 </td>
+                    <td>37 </td>
+                    <td>www.piccamc.com</td>
+                </tr>
+                <tr>
+                    <td>上银 </td>
+                    <td>上海市浦东新区世纪大道1528号(竹林路101号)陆家嘴基金大厦9楼 </td>
+                    <td>1319.8 </td>
+                    <td>76 </td>
+                    <td>www.boscam.com.cn</td>
+                </tr>
+                <tr>
+                    <td>东海基金 </td>
+                    <td>上海市浦东新区世纪大道1528号陆家嘴基金大厦15楼 </td>
+                    <td>113.03 </td>
+                    <td>17 </td>
+                    <td>www.donghaifunds.com</td>
+                </tr>
+                <tr>
+                    <td>富安达 </td>
+                    <td>上海市浦东新区世纪大道1568号29楼 </td>
+                    <td>76.64 </td>
+                    <td>30 </td>
+                    <td>www.fadfunds.com</td>
+                </tr>
+                <tr>
+                    <td>银河 </td>
+                    <td>上海市浦东新区世纪大道1568号中建大厦15楼 </td>
+                    <td>1032.39 </td>
+                    <td>134 </td>
+                    <td>www.cgf.cn</td>
+                </tr>
+                <tr>
+                    <td>永赢 </td>
+                    <td>上海市浦东新区世纪大道210号二十一世纪大厦21、22、23、27层 </td>
+                    <td>2712 </td>
+                    <td>186 </td>
+                    <td>www.maxwealthfund.com</td>
+                </tr>
+                <tr>
+                    <td>国海富兰克林 </td>
+                    <td>上海市浦东新区世纪大道8号上海国金中心二期9层 </td>
+                    <td>820.1 </td>
+                    <td>66 </td>
+                    <td>www.ftsfund.com</td>
+                </tr>
+                <tr>
+                    <td>汇丰晋信 </td>
+                    <td>上海市浦东新区世纪大道8号上海国金中心汇丰银行大楼17楼 </td>
+                    <td>478.3 </td>
+                    <td>54 </td>
+                    <td>www.hsbcjt.cn</td>
+                </tr>
+                <tr>
+                    <td>中信保诚 </td>
+                    <td>上海市浦东新区世纪大道8号上海国金中心汇丰银行大楼9层 </td>
+                    <td>1099.38 </td>
+                    <td>133 </td>
+                    <td>www.citicprufunds.com.cn</td>
+                </tr>
+                <tr>
+                    <td>华泰证券(上海) </td>
+                    <td>上海市浦东新区东方路18号保利广场E栋21楼 </td>
+                    <td>899.14 </td>
+                    <td>68 </td>
+                    <td>htamc.htsc.com.cn</td>
+                </tr>
+                <tr>
+                    <td>泉果 </td>
+                    <td>上海市浦东新区南洋泾路555号陆家嘴金融街区19号楼 </td>
+                    <td>98.47 </td>
+                    <td>2 </td>
+                    <td>www.qgfund.com</td>
+                </tr>
+                <tr>
+                    <td>华泰保兴 </td>
+                    <td>上海市浦东新区博成路1101号华泰金融大厦9层 </td>
+                    <td>295.9 </td>
+                    <td>36 </td>
+                    <td>www.ehuataifund.com</td>
+                </tr>
+                <tr>
+                    <td>诺德 </td>
+                    <td>上海市浦东新区富城路99号震旦国际大楼18层 </td>
+                    <td>384.11 </td>
+                    <td>51 </td>
+                    <td>www.nuodefund.com</td>
+                </tr>
+                <tr>
+                    <td>湘财 </td>
+                    <td>上海市浦东新区杨高南路428号由由世纪广场1号楼3楼 </td>
+                    <td>29.34 </td>
+                    <td>23 </td>
+                    <td>www.xc-fund.com</td>
+                </tr>
+                <tr>
+                    <td>东证融汇证券 </td>
+                    <td>上海市浦东新区杨高南路729号陆家嘴世纪金融广场1号楼16层 </td>
+                    <td>96.4 </td>
+                    <td>9 </td>
+                    <td>www.dzronghui.com</td>
+                </tr>
+                <tr>
+                    <td>易米 </td>
+                    <td>上海市浦东新区杨高南路759号29层02单元 </td>
+                    <td>8.43 </td>
+                    <td>12 </td>
+                    <td>www.yimifund.com</td>
+                </tr>
+                <tr>
+                    <td>华富 </td>
+                    <td>上海市浦东新区栖霞路18号陆家嘴富汇大厦A座3楼、5楼 </td>
+                    <td>854.65 </td>
+                    <td>86 </td>
+                    <td>www.hffund.com</td>
+                </tr>
+                <tr>
+                    <td>泰信 </td>
+                    <td>上海市浦东新区浦东南路256号华夏银行大厦36-37层 </td>
+                    <td>361.22 </td>
+                    <td>51 </td>
+                    <td>www.ftfund.com</td>
+                </tr>
+                <tr>
+                    <td>万家 </td>
+                    <td>上海市浦东新区浦电路360号陆家嘴投资大厦9楼 </td>
+                    <td>3488.68 </td>
+                    <td>226 </td>
+                    <td>www.wjasset.com</td>
+                </tr>
+                <tr>
+                    <td>朱雀 </td>
+                    <td>上海市浦东新区海阳西路555号/东育路588号前滩中心【又名:前滩荟中心】第58层 </td>
+                    <td>200.4 </td>
+                    <td>13 </td>
+                    <td>www.rosefinchfund.com</td>
+                </tr>
+                <tr>
+                    <td>浦银安盛 </td>
+                    <td>上海市浦东新区滨江大道5189号S2座1-7层 </td>
+                    <td>3020.23 </td>
+                    <td>181 </td>
+                    <td>www.py-axa.com</td>
+                </tr>
+                <tr>
+                    <td>博道 </td>
+                    <td>上海市浦东新区福山路500号城建国际中心1601室 </td>
+                    <td>176.4 </td>
+                    <td>41 </td>
+                    <td>www.bdfund.cn</td>
+                </tr>
+                <tr>
+                    <td>瑞达 </td>
+                    <td>上海市浦东新区福山路500号城建国际大厦2508-2510 </td>
+                    <td>1.04 </td>
+                    <td>6 </td>
+                    <td>www.ruidaamc.com</td>
+                </tr>
+                <tr>
+                    <td>蜂巢 </td>
+                    <td>上海市浦东新区竹林路101号陆家嘴基金大厦10楼 </td>
+                    <td>427.49 </td>
+                    <td>41 </td>
+                    <td>www.hexaamc.com</td>
+                </tr>
+                <tr>
+                    <td>西部利得 </td>
+                    <td>上海市浦东新区耀体路276号晶耀商务广场3号楼9层 </td>
+                    <td>899.31 </td>
+                    <td>113 </td>
+                    <td>www.westleadfund.com</td>
+                </tr>
+                <tr>
+                    <td>金元顺安 </td>
+                    <td>上海市浦东新区花园石桥路33号花旗集团大厦36楼3608 </td>
+                    <td>242.55 </td>
+                    <td>25 </td>
+                    <td>www.jysa99.com</td>
+                </tr>
+                <tr>
+                    <td>长安 </td>
+                    <td>上海市浦东新区芳甸路1088号紫竹国际大厦16层 </td>
+                    <td>131.08 </td>
+                    <td>50 </td>
+                    <td>www.changanfunds.com</td>
+                </tr>
+                <tr>
+                    <td>华泰柏瑞 </td>
+                    <td>上海市浦东新区芳甸路1155号嘉里城36层、40层(4003B、4003C、4004及4005单元) </td>
+                    <td>3037.44 </td>
+                    <td>210 </td>
+                    <td>www.huatai-pb.com</td>
+                </tr>
+                <tr>
+                    <td>兴证全球 </td>
+                    <td>上海市浦东新区芳甸路1155号浦东嘉里城办公楼28楼 </td>
+                    <td>5863.19 </td>
+                    <td>91 </td>
+                    <td>www.xqfunds.com</td>
+                </tr>
+                <tr>
+                    <td>睿远 </td>
+                    <td>上海市浦东新区芳甸路1155号浦东嘉里城办公楼42‐43楼 </td>
+                    <td>524.76 </td>
+                    <td>6 </td>
+                    <td>www.foresightfund.com</td>
+                </tr>
+                <tr>
+                    <td>中银 </td>
+                    <td>上海市浦东新区银城中路200号中银大厦10楼、11楼、26楼、45楼 </td>
+                    <td>3988.26 </td>
+                    <td>253 </td>
+                    <td>www.bocim.com</td>
+                </tr>
+                <tr>
+                    <td>中银国际证券 </td>
+                    <td>上海市浦东新区银城中路200号中银大厦39、40、41层 </td>
+                    <td>1245.48 </td>
+                    <td>79 </td>
+                    <td>www.bocichina.com</td>
+                </tr>
+                <tr>
+                    <td>中泰证券(上海) </td>
+                    <td>上海市浦东新区银城中路488号太平金融大厦1002-1003室 </td>
+                    <td>401.3 </td>
+                    <td>46 </td>
+                    <td>www.ztzqzg.com</td>
+                </tr>
+                <tr>
+                    <td>太平 </td>
+                    <td>上海市浦东新区银城中路488号太平金融大厦7楼 </td>
+                    <td>593.58 </td>
+                    <td>45 </td>
+                    <td>www.taipingfund.com.cn</td>
+                </tr>
+                <tr>
+                    <td>中海 </td>
+                    <td>上海市浦东新区银城中路68号2905-2908室及30层 </td>
+                    <td>149.72 </td>
+                    <td>41 </td>
+                    <td>www.zhfund.com</td>
+                </tr>
+                <tr>
+                    <td>长信基金 </td>
+                    <td>上海市浦东新区银城中路68号时代金融中心九楼 </td>
+                    <td>1152.1 </td>
+                    <td>157 </td>
+                    <td>www.cxfund.com.cn</td>
+                </tr>
+                <tr>
+                    <td>东吴 </td>
+                    <td>上海市浦东新区银城路117号瑞明大厦9F </td>
+                    <td>207.34 </td>
+                    <td>65 </td>
+                    <td>www.scfund.com.cn</td>
+                </tr>
+                <tr>
+                    <td>农银汇理 </td>
+                    <td>上海市浦东新区银城路9号农银大厦50层 </td>
+                    <td>1720.94 </td>
+                    <td>93 </td>
+                    <td>www.abc-ca.com</td>
+                </tr>
+                <tr>
+                    <td>兴业 </td>
+                    <td>上海市浦东新区银城路东新区银城路167号13、14层 </td>
+                    <td>2829.93 </td>
+                    <td>134 </td>
+                    <td>www.cib-fund.com.cn</td>
+                </tr>
+                <tr>
+                    <td>兴证证券 </td>
+                    <td>上海市浦东新区长柳路36号兴业证券大厦9楼 </td>
+                    <td>25.14 </td>
+                    <td>25 </td>
+                    <td>www.ixzzcgl.com</td>
+                </tr>
+                <tr>
+                    <td>中庚 </td>
+                    <td>上海市浦东新区陆家嘴环路1318号星展银行大厦7F 703-704室 </td>
+                    <td>383.05 </td>
+                    <td>6 </td>
+                    <td>www.zgfunds.com.cn</td>
+                </tr>
+                <tr>
+                    <td>国联安 </td>
+                    <td>上海市浦东新区陆家嘴环路1318号星展银行大厦9楼 </td>
+                    <td>867.16 </td>
+                    <td>108 </td>
+                    <td>www.cpicfunds.com</td>
+                </tr>
+                <tr>
+                    <td>海富通 </td>
+                    <td>上海市浦东新区陆家嘴花园石桥路66号东亚银行金融大厦36-37层 </td>
+                    <td>1409.28 </td>
+                    <td>141 </td>
+                    <td>www.hftfund.com</td>
+                </tr>
+                <tr>
+                    <td>恒越 </td>
+                    <td>上海市浦东新区龙阳路2277 号永达国际大厦2102-2104室 </td>
+                    <td>88.16 </td>
+                    <td>24 </td>
+                    <td>www.hengyuefund.com</td>
+                </tr>
+                <tr>
+                    <td>华宝 </td>
+                    <td>上海市自由贸易试验区世纪大道100号上海环球金融中心58楼 </td>
+                    <td>3320.77 </td>
+                    <td>212 </td>
+                    <td>www.fsfund.com</td>
+                </tr>
+                <tr>
+                    <td>富国 </td>
+                    <td>上海市自由贸易试验区世纪大道1196号世纪汇办公楼二座27-30层 </td>
+                    <td>8522.42 </td>
+                    <td>490 </td>
+                    <td>www.fullgoal.com.cn</td>
+                </tr>
+                <tr>
+                    <td>华安 </td>
+                    <td>上海市自由贸易试验区世纪大道8号国金中心二期31-32层 </td>
+                    <td>5481.12 </td>
+                    <td>394 </td>
+                    <td>www.huaan.com.cn</td>
+                </tr>
+                <tr>
+                    <td>上投摩根 </td>
+                    <td>上海市自由贸易试验区富城路99号震旦国际大楼25层 </td>
+                    <td>1309.43 </td>
+                    <td>156 </td>
+                    <td>www.cifm.com </td>
+                </tr>
+                <tr>
+                    <td>兴银基金 </td>
+                    <td>上海市自由贸易试验区滨江大道5129号N1幢3层、4层 </td>
+                    <td>720.53 </td>
+                    <td>74 </td>
+                    <td>www.hffunds.cn</td>
+                </tr>
+                <tr>
+                    <td>贝莱德 </td>
+                    <td>上海市自由贸易试验区陆家嘴环路1233号汇亚大厦7楼702室 </td>
+                    <td>53.98 </td>
+                    <td>10 </td>
+                    <td>www.blackrock.com.cn</td>
+                </tr>
+                <tr>
+                    <td>中欧 </td>
+                    <td>上海市自由贸易试验区陆家嘴环路479号上海中心大厦8层、上海市虹口区公平路18号8栋-嘉昱大厦7层 </td>
+                    <td>4691.4 </td>
+                    <td>281 </td>
+                    <td>www.zofund.com</td>
+                </tr>
+                <tr>
+                    <td>达诚 </td>
+                    <td>上海市虹口区东大名路1089号北外滩来福士东塔2903单元 </td>
+                    <td>3.55 </td>
+                    <td>10 </td>
+                    <td>www.integrity-funds.com</td>
+                </tr>
+                <tr>
+                    <td>天风(上海)证券 </td>
+                    <td>上海市虹口区东大名路678号5楼 </td>
+                    <td>10.02 </td>
+                    <td>6 </td>
+                    <td>www.tfzqam.com</td>
+                </tr>
+                <tr>
+                    <td>国泰 </td>
+                    <td>上海市虹口区公平路18号8号楼嘉昱大厦16层-19层 </td>
+                    <td>5489.58 </td>
+                    <td>369 </td>
+                    <td>www.gtfund.com</td>
+                </tr>
+                <tr>
+                    <td>华宸未来 </td>
+                    <td>上海市虹口区四川北路859号中信广场16楼 </td>
+                    <td>1.49 </td>
+                    <td>5 </td>
+                    <td>www.hcmiraefund.com</td>
+                </tr>
+                <tr>
+                    <td>财通 </td>
+                    <td>上海市银城中路68号时代金融中心43楼 </td>
+                    <td>608.63 </td>
+                    <td>76 </td>
+                    <td>www.ctfund.com</td>
+                </tr>
+                <tr>
+                    <td>鑫元 </td>
+                    <td>上海市静安区中山北路909号12楼 </td>
+                    <td>1094.04 </td>
+                    <td>94 </td>
+                    <td>www.xyamc.com</td>
+                </tr>
+                <tr>
+                    <td>上海光大证券 </td>
+                    <td>上海市静安区新闸路1508号17层 </td>
+                    <td>253.44 </td>
+                    <td>38 </td>
+                    <td>www.ebscn-am.com</td>
+                </tr>
+                <tr>
+                    <td>上海国泰君安证券 </td>
+                    <td>上海市静安区新闸路669号博华大厦22-23层及25层 </td>
+                    <td>420.57 </td>
+                    <td>53 </td>
+                    <td>www.gtjazg.com</td>
+                </tr>
+                <tr>
+                    <td>光大保德信 </td>
+                    <td>上海市黄浦区中山东二路558号外滩金融中心1幢(北区3号楼 </td>
+                    <td>823.89 </td>
+                    <td>112 </td>
+                    <td>www.epf.com.cn</td>
+                </tr>
+                <tr>
+                    <td>德邦 </td>
+                    <td>上海市黄浦区中山东二路600号S1幢2101-2106单元 </td>
+                    <td>260.71 </td>
+                    <td>59 </td>
+                    <td>www.dbfund.com.cn</td>
+                </tr>
+                <tr>
+                    <td>上海证券 </td>
+                    <td>上海市黄浦区四川中路213号久事商务大厦7楼 </td>
+                    <td>1.04 </td>
+                    <td>3 </td>
+                    <td>www.shzq.com</td>
+                </tr>
+                <tr>
+                    <td>弘毅远方 </td>
+                    <td>上海市黄浦区圆明园路149号哈密大楼6楼 </td>
+                    <td>14.22 </td>
+                    <td>13 </td>
+                    <td>www.honyfunds.com</td>
+                </tr>
+                <tr>
+                    <td>上海东方证券 </td>
+                    <td>上海市黄浦区外马路108号供销大厦7层-11层 </td>
+                    <td>2073.9 </td>
+                    <td>145 </td>
+                    <td>www.dfham.com</td>
+                </tr>
+                <tr>
+                    <td>汇添富基金管理 </td>
+                    <td>上海市黄浦区外马路728号 </td>
+                    <td>8461.7 </td>
+                    <td>523 </td>
+                    <td>www.99fund.com</td>
+                </tr>
+                <tr>
+                    <td>上海海通证券 </td>
+                    <td>上海市黄浦区广东路689号第32层第01-12室单元 </td>
+                    <td>101.57 </td>
+                    <td>38 </td>
+                    <td>www.htsec.com</td>
+                </tr>
+                <tr>
+                    <td>凯石 </td>
+                    <td>上海市黄浦区延安东路1号2层 </td>
+                    <td>2.11 </td>
+                    <td>5 </td>
+                    <td>www.vstonefund.com</td>
+                </tr>
+                <tr>
+                    <td>淳厚 </td>
+                    <td>上海浦东新区丁香路778号丁香国际大厦西塔7楼 </td>
+                    <td>313.29 </td>
+                    <td>40 </td>
+                    <td>www.purekindfund.com</td>
+                </tr>
+                <tr>
+                    <td>交银施罗德 </td>
+                    <td>上海浦东新区世纪大道8号国金中心二期21-22楼 </td>
+                    <td>5289.89 </td>
+                    <td>196 </td>
+                    <td>www.fund001.com</td>
+                </tr>
+                <tr>
+                    <td>圆信永丰 </td>
+                    <td>中国上海市浦东新区世纪大道1528号陆家嘴基金大厦19楼 </td>
+                    <td>327.88 </td>
+                    <td>46 </td>
+                    <td>www.gtsfund.com.cn</td>
+                </tr>
+            </tbody>
+        </table>
+</body>
+</html>
+

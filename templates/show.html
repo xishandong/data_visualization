@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据可视化 20121028董西山</title>
+</head>
+<style>
+body{
+    margin: 0;
+    background-color: #D1E7FF;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    top: 320%;
+    height: 10%;
+}
+.box1{
+    position: absolute;
+    width: 60%;
+    height: 10%;
+    top:0;
+    left: 20%;
+    font-size: 26px;
+    color: #3097fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.box2{
+    position: absolute;
+    width: 60%;
+    height: 5%;
+    top: 10%;
+    left: 20%;
+}
+.box2 input{
+    width: 90%;
+    height: 88%;
+    font-size: 20px;
+    border-color: antiquewhite;
+}
+.box2 button{
+    position: absolute;
+    width: 10%;
+    height: 100%;
+}
+#time{
+    position: absolute;
+    height: 5%;
+    top:10%;
+    right: 2%;
+    color: black;
+    font-size: 20px;
+}
+#data{
+    position: absolute;
+    width: 40%;
+    height: 50%;
+    top:30%;
+    left: 0;
+}
+#data1{
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    top:20%;
+    left: 110%;
+}
+#data2 {
+    position: absolute;
+    width: 60%;
+    height: 80%;
+    top: 30%;
+    left: 40%;
+}
+#data5{
+    position: absolute;
+    top: 230%;
+    width: 50%;
+    height: 80%;
+}
+#data4{
+    position: absolute;
+    top: 230%;
+    width: 50%;
+    height: 80%;
+    left: 50%;
+}
+#data3{
+    position: absolute;
+    top: 140%;
+    width: 50%;
+    height: 80%;
+    left: 50%;
+}
+#data6{
+    position: absolute;
+    top: 140%;
+    width: 50%;
+    height: 80%;
+    left: 0;
+}
+#data7{
+    position: absolute;
+    left: 100%;
+    top: 100%;
+    height: 100%;
+    width: 70%;
+}
+.type_j{
+    position: absolute;
+    width: 60%;
+    height: 10%;
+    top: 22%;
+    left: 57%;
+}
+.box3{
+    position: absolute;
+    width: 45%;
+    height: 5%;
+    top: 220%;
+    left: 22.5%;
+}
+.box3 input{
+    width: 90%;
+    height: 88%;
+    font-size: 20px;
+    border-color: antiquewhite;
+}
+.box3 button{
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    color: rebeccapurple;
+}
+.box4{
+    position: absolute;
+    width: 45%;
+    height: 5%;
+    top: 120%;
+    left: 22.5%;
+}
+.box4 input{
+    width: 90%;
+    height: 88%;
+    font-size: 20px;
+    border-color: antiquewhite;
+}
+.box4 button{
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    color: rebeccapurple;
+}
+</style>
+<script src="https://cdn.bootcss.com/echarts/5.4.1/echarts.min.js"></script>
+<script src="https://madeapie.com/dep/echarts/map/js/china.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<div class="box1" id="title">
+    基金涨幅与天气变化数据可视化
+</div>
+<div id="time"></div>
+<body>
+    <div class="box2">
+        <label>
+            <input type="text" placeholder="请输入基金编号"/>
+        </label>
+        <button id="btn"> 搜索</button>
+    </div>
+    <div id="data" ></div>
+    <div id="data1" ></div>
+    <div class="type_j">
+        <label><input type="radio" name="type" value="1" >股票型</label>
+		<label><input type="radio" name="type" value="3">混合型</label>
+        <label><input type="radio" name="type" value="2">债券型</label>
+        <label><input type="radio" name="type" value="5">指数型</label>
+        <label><input type="radio" name="type" value="11">QDII型</label>
+    </div>
+    <div id="data2" ></div>
+    <div id="data3"></div>
+    <div class="box3">
+        <label>
+            <input type="text" placeholder="请输入想要投资的金额(单位:元)"/>
+        </label>
+        <button id="btn1"> 投资预测</button>
+    </div>
+    <div id="data4"></div>
+    <div id="data5"></div>
+    <div class="box4">
+        <label>
+            <input type="text" placeholder="请输入想要对比的基金编号"/>
+        </label>
+        <button id="btn2"> 基金对比</button>
+    </div>
+    <div id="data6"></div>
+    <div id="data7"></div>
+
+<footer>
+   <p>&copy; 2023 My Website. All rights reserved.</p>
+   <ul>
+      <li><a  href="https://space.bilibili.com/35242527">作者： 董西山</a></li>
+   </ul>
+</footer>
+
+<script>
+    optiont = {
+  graphic: {
+    elements: [
+      {
+        type: 'text',
+        left: 'center',
+        top: 'center',
+        style: {
+          text: '基金变化与收益预测数据可视化',
+          fontSize: 35,
+          fontWeight: 'bold',
+          lineDash: [0, 200],
+          lineDashOffset: 0,
+          fill: 'transparent',
+          stroke: '#3097fd',
+          lineWidth: 1
+        },
+        keyframeAnimation: {
+          duration: 3000,
+          loop: false,
+          keyframes: [
+            {
+              percent: 0.7,
+              style: {
+                fill: 'transparent',
+                lineDashOffset: 200,
+                lineDash: [200, 0]
+              }
+            },
+            {
+              // Stop for a while.
+              percent: 0.8,
+              style: {
+                fill: 'transparent'
+              }
+            },
+            {
+              percent: 1,
+              style: {
+                fill: '#000'
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+};
+    var tit = echarts.init(document.getElementById('title'))
+    tit.setOption(optiont)
+</script>
+<script>
+option = {
+    title:{
+        text:'请搜索数据后获取'
+    },
+    dataZoom: {
+        yAxisIndex: 'none',
+           type: 'inside',
+          xAxisIndex: 0,
+          start: 0,
+          end: 100,
+      },
+    tooltip: {
+      trigger: 'axis',
+      axisPoint: {
+          type: 'line',
+          lineStyle: {
+              color: 'red'
+          }
+      }
+    },
+    toolbox: {
+    show: true,
+    feature: {
+      dataView: { readOnly: false },
+      magicType: { type: ['line', 'bar'] },
+      saveAsImage: {}
+    }
+  },
+    xAxis: {
+        type: 'category',
+        data: []
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+    {
+        data: [],
+        type: 'line'
+    }
+    ]
+};
+var xl = echarts.init(document.getElementById('data'))
+    xl.setOption(option)
+        $('#btn').click(function (){
+          var text = $('.box2 input').val()
+            $.ajax({
+            url:'/api',
+            type:'GET',
+            data: {'key': text},
+            success:function (res){
+                console.log(res)
+                if (res.success === 0){
+                    option.xAxis.data = res.value.time;
+                    option.series[0].data = res.value.price;
+                    option.title.text = res.value.title;
+                    xl.setOption(option)
+                }
+            },
+            error:function (){
+                console.log('服务器错误')
+            }
+        })
+        })
+</script>
+<script>
+    options = {
+  title: {
+    text: '基金公司相关信息',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      animation: false
+    }
+  },
+  legend: {
+    data: ['公司规模', '基金数量'],
+    left: 10
+  },
+  toolbox: {
+    feature: {
+      dataZoom: {
+        yAxisIndex: 'none'
+      },
+      saveAsImage: {}
+    }
+  },
+  axisPointer: {
+    link: [
+      {
+        xAxisIndex: 'all'
+      }
+    ]
+  },
+  dataZoom: [
+    {
+      show: true,
+      realtime: true,
+      start: 30,
+      end: 70,
+      xAxisIndex: [0, 1]
+    },
+    {
+      type: 'inside',
+      realtime: true,
+      start: 30,
+      end: 70,
+      xAxisIndex: [0, 1]
+    }
+  ],
+  grid: [
+    {
+      left: 60,
+      right: 50,
+      height: '35%'
+    },
+    {
+      left: 60,
+      right: 50,
+      top: '55%',
+      height: '35%'
+    }
+  ],
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      axisLine: { onZero: true },
+      data: []
+    },
+    {
+      gridIndex: 1,
+      type: 'category',
+      boundaryGap: false,
+      axisLine: { onZero: true },
+      data: [],
+      position: 'top'
+    }
+  ],
+  yAxis: [
+    {
+      name: '公司规模(亿元)',
+      type: 'value',
+      max: 16000
+    },
+    {
+      gridIndex: 1,
+      name: '基金数量(只)',
+      type: 'value',
+      inverse: true
+    }
+  ],
+  series: [
+    {
+      name: '公司规模',
+      type: 'line',
+      symbolSize: 8,
+      // prettier-ignore
+      data: []
+    },
+    {
+      name: '基金数量',
+      type: 'line',
+      xAxisIndex: 1,
+      yAxisIndex: 1,
+      symbolSize: 8,
+      // prettier-ignore
+      data: []
+    }
+  ]
+};
+    var xll = echarts.init(document.getElementById('data1'))
+    xll.setOption(options)
+    $.ajax({
+            url:'/company',
+            type:'GET',
+            success:function (res){
+                options.xAxis[0].data = res.name;
+                options.xAxis[1].data = res.url;
+                options.series[0].data = res.scale;
+                options.series[1].data = res.count;
+                xll.setOption(options)
+            },
+            error:function (){
+                console.log('服务器错误')
+            }
+        })
+    // 处理点击事件并且跳转到相应的百度搜索页面
+    xll.on('click', function(params) {
+        if(params.seriesName === "公司规模"){
+            window.open('https://www.baidu.com/s?wd=' + encodeURIComponent(params.name));
+        }
+        else {
+           window.open('https://' + encodeURIComponent(params.name));
+        }
+      console.log(params)
+    });
+</script>
+<script>
+optionx = {
+    title:{
+      text:"历史表现前十"
+    },
+     tooltip: {
+    trigger: 'item',
+    label: {
+                normal: {
+                    show: true,
+                    textStyle: {
+                        color: 'rgba(30,159,255,1)'
+                    }
+
+                }
+            }
+  },
+  toolbox: {
+    show: true,
+    feature: {
+      dataView: { show: true, readOnly: false },
+      saveAsImage: { show: true }
+    }
+  },
+  series: [
+    {
+      name: 'Nightingale Chart',
+      type: 'pie',
+      radius: [50, 250],
+      center: ['50%', '50%'],
+      roseType: 'area',
+      itemStyle: {
+        borderRadius: 10
+      },
+      data: [{'value': '134.2313', 'name': '001696:南方智造股票'}, {'value': '68.1144', 'name': '005669:前海开源公用事业'}, {'value': '62.7197', 'name': '001678:英大国企改革主题股票'}, {'value': '59.9487', 'name': '005033:银华智能汽车量化优选A'}, {'value': '59.7404', 'name': '005034:银华智能汽车量化优选C'}, {'value': '55.5976', 'name': '011229:创金合信数字经济主题股票A'}, {'value': '54.0514', 'name': '011230:创金合信数字经济主题股票C'}, {'value': '47.8271', 'name': '167705:德邦量化新锐A'}, {'value': '47.1057', 'name': '167706:德邦量化新锐C'}, {'value': '45.8298', 'name': '003492:前海开源外向企业'}, {'value': '43.2885', 'name': '005505:前海开源中药股票A'}]
+    }
+  ]
+};
+    var rx = echarts.init(document.getElementById('data2'))
+    rx.setOption(optionx)
+    $(':radio').click(function () {
+        var radioValue = $("input[name='type']:checked").val();
+        $.ajax({
+            url:'/rank',
+            type:'GET',
+            data: {'id': radioValue},
+            success:function (res){
+                console.log(res)
+                if (res.success === 0){
+                    optionx.series[0].data = res.value;
+                    rx.setOption(optionx)
+                }
+            },
+            error:function (){
+                console.log('服务器错误')
+            }
+        })
+    })
+</script>
+<script>
+optionpr = {
+    title:{
+        text: '行业投资占比及项目占比'
+    },
+tooltip: {
+trigger: 'item',
+formatter: '{a} <br/>{b}: {c} ({d}%)'
+},
+series: [
+{
+  name: 'Access From',
+  type: 'pie',
+  selectedMode: 'single',
+  radius: [0, '30%'],
+  label: {
+    position: 'inner',
+    fontSize: 14
+  },
+  labelLine: {
+    show: false
+  },
+  data: []
+},
+{
+  name: 'Access From',
+  type: 'pie',
+  radius: ['45%', '60%'],
+  labelLine: {
+    length: 30
+  },
+  label: {
+    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+    backgroundColor: '#F6F8FC',
+    borderColor: '#8C8D8E',
+    borderWidth: 1,
+    borderRadius: 4,
+    rich: {
+      a: {
+        color: '#6E7079',
+        lineHeight: 22,
+        align: 'center'
+      },
+      hr: {
+        borderColor: '#8C8D8E',
+        width: '100%',
+        borderWidth: 1,
+        height: 0
+      },
+      b: {
+        color: '#4C5058',
+        fontSize: 14,
+        fontWeight: 'bold',
+        lineHeight: 33
+      },
+      per: {
+        color: '#fff',
+        backgroundColor: '#4C5058',
+        padding: [3, 4],
+        borderRadius: 4
+      }
+    }
+  },
+  data: []
+}
+]
+};
+var pr = echarts.init(document.getElementById('data3'))
+pr.setOption(optionpr)
+    $('#btn').click(function (){
+          var text = $('.box2 input').val()
+            $.ajax({
+            url:'/inst',
+            type:'GET',
+            data: {'values': text},
+            success:function (res){
+                console.log(res)
+                if (res.success === 0){
+                    optionpr.series[0].data = res.value.data1;
+                    optionpr.series[1].data = res.value.data2;
+                    pr.setOption(optionpr)
+                }
+            },
+            error:function (){
+                console.log('服务器错误')
+            }
+        })
+    })
+</script>
+<script>
+optioner = {
+    title:{
+      text:"定投预测收益图"
+    },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      crossStyle: {
+        color: '#999'
+      }
+    }
+  },
+  toolbox: {
+    feature: {
+      dataView: { show: true, readOnly: false },
+      magicType: { show: true, type: ['line', 'bar'] },
+
+      saveAsImage: { show: true }
+    }
+  },
+  legend: {
+    data: ['投资金额', '收益金额', '收益率']
+  },
+  xAxis: [
+    {
+      type: 'category',
+      data: ['day', 'week', 'month'],
+      axisPointer: {
+        type: 'shadow'
+      }
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value',
+      name: '金额',
+      min: 0,
+      max: 1000,
+      interval: 100,
+      axisLabel: {
+        formatter: '{value} ￥'
+      }
+    },
+    {
+      type: 'value',
+      name: '收益率',
+      min: -5,
+      max: 25,
+      interval: 5,
+      axisLabel: {
+        formatter: '{value} %'
+      }
+    }
+  ],
+  series: [
+    {
+      name: '投资金额',
+      type: 'bar',
+      tooltip: {
+        valueFormatter: function (value) {
+          return value + ' ￥';
+        }
+      },
+      data: [
+
+      ]
+    },
+    {
+      name: '收益金额',
+      type: 'bar',
+      tooltip: {
+        valueFormatter: function (value) {
+          return value + ' ￥';
+        }
+      },
+      data: [
+
+      ]
+    },
+    {
+      name: '收益率',
+      type: 'line',
+      yAxisIndex: 1,
+      tooltip: {
+        valueFormatter: function (value) {
+          return value + ' %';
+        }
+      },
+      data: []
+    }
+  ]
+};
+    var inv = echarts.init(document.getElementById('data4'))
+    inv.setOption(optioner)
+     $('#btn1').click(function (){
+         var text = $('.box2 input').val()
+          var money = $('.box3 input').val()
+            $.ajax({
+            url:'/inv',
+            type:'GET',
+            data: {'key': text, 'money': money},
+            success:function (res){
+                if (res.success === 0){
+                    a = parseInt(res.value.data1, 0)
+                    b = parseInt(res.value.data3, 0)
+                    optioner.yAxis[0].max = a * 1.5;
+                    optioner.yAxis[0].interval = a*1.5/5;
+                    optioner.yAxis[1].max = b * 1.5;
+                    if(b<0){
+                        b = b * -1;
+                    }
+                    optioner.yAxis[1].interval = b*1.5/5;
+                    if(b === 0){
+                        optioner.yAxis[1].interval = 3;
+                        optioner.yAxis[1].max = 3;
+                    }
+                    optioner.series[0].data = res.value.data2;
+                    optioner.series[1].data = res.value.data1;
+                    optioner.series[2].data = res.value.data3;
+                    inv.setOption(optioner)
+                }
+            },
+            error:function (){
+                console.log('服务器错误')
+            }
+        })
+        })
+</script>
+<script>
+    days = {
+        title:{
+            text: '按每周一至周五投资收益预测'
+        },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      crossStyle: {
+        color: '#999'
+      }
+    }
+  },
+  toolbox: {
+    feature: {
+      dataView: { show: true, readOnly: false },
+      magicType: { show: true, type: ['line', 'bar'] },
+
+      saveAsImage: { show: true }
+    }
+  },
+  legend: {
+    data: ['投资金额', '投资收益', '收益率']
+  },
+  xAxis: [
+    {
+      type: 'category',
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+      axisPointer: {
+        type: 'shadow'
+      }
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value',
+      name: '金额',
+      min: 0,
+      max: 500,
+      interval: 50,
+      axisLabel: {
+        formatter: '{value} ￥'
+      }
+    },
+    {
+      type: 'value',
+      name: '收益率',
+      min: -5,
+      max: 10,
+      interval: 5,
+      axisLabel: {
+        formatter: '{value} %'
+      }
+    }
+  ],
+  series: [
+    {
+      name: '投资金额',
+      type: 'bar',
+      tooltip: {
+        valueFormatter: function (value) {
+          return value + ' ￥';
+        }
+      },
+      data: []
+    },
+    {
+      name: '投资收益',
+      type: 'bar',
+      tooltip: {
+        valueFormatter: function (value) {
+          return value + ' ￥';
+        }
+      },
+      data: []
+    },
+    {
+      name: '收益率',
+      type: 'line',
+      yAxisIndex: 1,
+      tooltip: {
+        valueFormatter: function (value) {
+          return value + ' %';
+        }
+      },
+      data: []
+    }
+  ]
+};
+    var day = echarts.init(document.getElementById('data5'))
+    day.setOption(days)
+    $('#btn1').click(function (){
+         var text = $('.box2 input').val()
+          var money = $('.box3 input').val()
+            $.ajax({
+            url:'/day',
+            type:'GET',
+            data: {'key': text, 'money': money},
+            success:function (res){
+                if (res.success === 0){
+                    a = parseInt(res.value.data1, 0)
+                    b = parseInt(res.value.data3, 0)
+                    days.yAxis[0].max = a * 2;
+                    days.yAxis[0].interval = a*2/5;
+                    days.yAxis[1].max = b * 2;
+                    if(b<0){
+                        b = b * -1;
+                    }
+                    days.yAxis[1].interval = b*1.5/5;
+                    if(b === 0){
+                        days.yAxis[1].interval = 3;
+                        days.yAxis[1].max = 3;
+                    }
+                    days.series[0].data = res.value.data2;
+                    days.series[1].data = res.value.data1;
+                    days.series[2].data = res.value.data3;
+                    day.setOption(days)
+                }
+            },
+            error:function (){
+                console.log('服务器错误')
+            }
+        })
+        })
+</script>
+<script>
+    radar = {
+  title: {
+    text: '基金评级雷达图'
+  },
+            tooltip: {
+    trigger: 'item',
+    label: {
+                normal: {
+                    show: true,
+                    textStyle: {
+                        color: 'rgba(30,159,255,1)'
+                    }
+
+                }
+            }
+  },
+  legend: {
+    data: ['基金A', '基金B']
+  },
+  radar: {
+    shape: 'circle',
+    indicator: [
+      { name: '累计收益', max: 300 , color:'rebeccapurple' },
+      { name: '成立时长', max: 10000, color:'rebeccapurple' },
+      { name: '基金规模', max: 10, color:'rebeccapurple' },
+      { name: '保留度', max: 100, color:'rebeccapurple' },
+      { name: '风险等级', max: 100, color:'rebeccapurple' },
+      { name: '预测收益率', max: 50, color:'rebeccapurple' }
+    ]
+  },
+  series: [
+    {
+      name: 'Budget vs spending',
+      type: 'radar',
+      data: [
+        {
+          value: [],
+          name: '基金A'
+        },
+        {
+          value: [],
+          name: '基金B'
+        }
+      ]
+    }
+  ]
+};
+    var rad = echarts.init(document.getElementById('data6'))
+    rad.setOption(radar)
+    $('#btn').click(function (){
+          var text = $('.box2 input').val()
+            $.ajax({
+            url:'/radar',
+            type:'GET',
+            data: {'key': text},
+            success:function (res){
+                console.log(res)
+                if (res.success === 0){
+                    radar.series[0].data[0].value = res.value.data
+                    radar.series[0].data[0].name = res.value.title
+                    radar.legend.data[0] = res.value.title
+                    rad.setOption(radar)
+                }
+            },
+            error:function (){
+                console.log('服务器错误')
+            }
+        })
+        })
+    $('#btn2').click(function (){
+          var text = $('.box4 input').val()
+            $.ajax({
+            url:'/radar',
+            type:'GET',
+            data: {'key': text},
+            success:function (res){
+                console.log(res)
+                if (res.success === 0){
+                    radar.series[0].data[1].value = res.value.data
+                    radar.series[0].data[1].name = res.value.title
+                    radar.legend.data[1] = res.value.title
+                    rad.setOption(radar)
+                }
+            },
+            error:function (){
+                console.log('服务器错误')
+            }
+        })
+        })
+</script>
+<script>
+    var outname = ["南海诸岛", '北京', '天津', '上海', '重庆', '河北', '河南', '云南', '辽宁', '黑龙江', '湖南', '安徽', '山东', '新疆', '江苏', '浙江', '江西', '湖北', '广西', '甘肃', '山西', '内蒙古', '陕西', '吉林', '福建', '贵州', '广东', '青海', '西藏', '四川', '宁夏', '海南', '台湾', '香港', '澳门'];
+    var outvalue = [0, 47, 0, 77, 1, 2, 1, 1, 0, 0, 2, 1, 1, 0, 3, 4, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 50, 0, 0, 0, 0, 0, 0, 2, 0];
+    var outdata = [];
+    for (var i = 0; i < outname.length; i++) {
+        outdata.push({
+            name: outname[i],
+            value: outvalue[i]
+        })
+    }
+    optiongp = {
+      title:{
+        text: '基金公司分布',
+          left: 'center'
+      },
+        toolbox: {
+        show: true,
+        feature: {
+          dataView: { readOnly: false },
+          restore: {},
+          saveAsImage: {}
+        },
+      },
+        tooltip: {
+            show: true,
+            formatter: function(params) {
+                if(params.name === '北京'){
+                return [params.name + '&nbsp;&nbsp;&nbsp;' + params.value + '个&nbsp;&nbsp;</br>','热门公司名称: 国都证券, 汇安基金, 银华基金管理</br>','热门基金推荐: 005033, 005034, 003622'].join('\n')
+                }
+                else if(params.name === '上海'){
+                return [params.name + '&nbsp;&nbsp;&nbsp;' + params.value + '个&nbsp;&nbsp;</br>','热门公司名称: 汇添富基金管理, 富国, 华安</br>','热门基金推荐: 002187, 007899, 007900'].join('\n')
+                }
+                else if(params.name === '广东'){
+                return [params.name + '&nbsp;&nbsp;&nbsp;' + params.value + '个&nbsp;&nbsp;</br>','热门公司名称: 广发, 南方基金管理, 博时</br>','热门基金推荐: 006926, 0114,  162703'].join('\n')
+                }
+                else if(params.name === '浙江'){
+                return [params.name + '&nbsp;&nbsp;&nbsp;' + params.value + '个&nbsp;&nbsp;</br>','热门公司名称: 南华, 浙商, 财通证券</br>','热门基金推荐: 550013, 003833, 002866'].join('\n')
+                }
+                else if(params.name === '江苏'){
+                return [params.name + '&nbsp;&nbsp;&nbsp;' + params.value + '个&nbsp;&nbsp;</br>','热门公司名称: 东海证券, 南京证券, 东吴证券</br>','热门基金推荐: 150220, 164821, 160808'].join('\n')
+                }
+                else if(params.name === '湖南'){
+                return [params.name + '&nbsp;&nbsp;&nbsp;' + params.value + '个&nbsp;&nbsp;</br>','热门公司名称: 天风证券, 方正证券, 财信证券</br>','热门基金推荐: 270023, 270027, 009975'].join('\n')
+                }
+                else if(params.name === '河北'){
+                return [params.name + '&nbsp;&nbsp;&nbsp;' + params.value + '个&nbsp;&nbsp;</br>','热门公司名称: 天弘, 财达证券</br>','热门基金推荐: 008768, 008769'].join('\n')
+                }
+                else{
+                return params.name + '&nbsp;&nbsp;&nbsp;' + params.value + '个&nbsp;&nbsp;</br>' + '</br>该地区无热门推荐'
+                }
+            }
+        },
+        visualMap: {
+            type: 'piecewise',
+            left: '20%',
+            bottom: '15',
+            itemWidth: 27,
+            itemHeight: 15,
+            color: '#fff',
+            textStyle: {
+                color: '#333333',
+                fontSize: 14,
+            },
+            pieces: [{
+                min: 70,
+                label: '>70',
+            }, {
+                max: 70,
+                min: 40,
+                label: '40-70',
+            }, {
+                max: 40,
+                min: 0,
+                label: '<40',
+            }, {
+                value: 0,
+                label: '无数据',
+            }, ],
+            inRange: {
+                color: ['#d6fff9', '#96c5ea', '#3092e5', '#f11313']
+            },
+            outOfRange: {
+                color: ['#999999']
+            }
+        },
+        geo: {
+            map: 'china',
+            show: true,
+            roam: false,
+            label: {
+                emphasis: {
+                    show: false
+                }
+            },
+            itemStyle: {
+                normal: {
+                    borderColor: 'rgba(0,63,140,0.2)',
+                    shadowColor: 'rgba(0,63,140,0.2)',
+                    shadowOffsetY: 20,
+                    shadowBlur: 30
+                }
+            }
+        },
+        series: [{
+            type: 'map',
+            map: 'china',
+            aspectScale: 0.75,
+            label: {
+                normal: {
+                    show: false,
+                },
+                emphasis: {
+                    show: false,
+                }
+            },
+            itemStyle: {
+                normal: {
+                    areaColor: '#B2CAE0',
+                    borderColor: '#fff',
+                    borderWidth: 1,
+                },
+                emphasis: {
+                    areaColor: '#FFAE00',
+                }
+            },
+            data: outdata
+        }]
+    };
+    var gp = echarts.init(document.getElementById('data7'))
+    gp.setOption(optiongp)
+    gp.on('click', function(params) {
+      // 控制台打印数据的名称
+      console.log(params.name);
+      if(params.name === '北京'){
+          window.open('beijin')
+      }
+      else if(params.name === '广东'){
+          window.open('guangdong')
+      }
+      else if(params.name === '上海'){
+          window.open('shanghai')
+      }
+      else{
+          window.open('qita')
+      }
+}   );
+</script>
+</body>
+</html>
